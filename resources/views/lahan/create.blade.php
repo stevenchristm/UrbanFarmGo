@@ -44,13 +44,19 @@
             </div>
         </div>
 
-        <button type="submit" class="cyber-btn" style="width: 100%; justify-content: center; padding: 1.2rem;">
-            <i class="fas fa-microchip"></i> Simpan & Eksekusi Analisis
-        </button>
-        
-        <a href="{{ route('lahan.index') }}" style="display: block; text-align: center; margin-top: 1.5rem; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600;">
-            Batal dan Kembali
-        </a>
+        <div class="flex flex-col sm:flex-row items-center gap-4 mt-8">
+            <!-- Secondary Button: Batal -->
+            <a href="{{ route('lahan.index') }}" class="w-full sm:w-auto flex justify-center items-center gap-2 px-6 py-3 bg-white/20 hover:bg-emerald-50/50 backdrop-blur-md border border-emerald-500/30 hover:border-emerald-300 text-emerald-700 font-semibold rounded-xl shadow-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span>Batal dan Kembali</span>
+            </a>
+            
+            <!-- Primary Button: Simpan -->
+            <button type="submit" class="w-full sm:w-auto flex justify-center items-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-xl shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:shadow-[0_4px_25px_rgba(16,185,129,0.5)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                <i data-lucide="save" class="w-5 h-5"></i>
+                <span>Simpan & Eksekusi Analisis</span>
+            </button>
+        </div>
     </form>
 </div>
 @endsection
