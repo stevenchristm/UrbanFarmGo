@@ -85,13 +85,16 @@
 </style>
 @endsection
 
-@section('content')
+@section('background')
 <!-- Mesh Background -->
 <div class="mesh-bg">
     <div class="blob-1"></div>
     <div class="blob-2"></div>
     <div class="blob-3"></div>
 </div>
+@endsection
+
+@section('content')
 
 <div class="relative z-10 flex flex-col gap-10 pb-16">
     <!-- Header -->

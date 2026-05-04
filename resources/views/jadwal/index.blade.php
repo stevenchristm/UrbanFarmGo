@@ -39,17 +39,22 @@
 
     /* Glassmorphism Classes */
     .glass-card-premium {
-        background: rgba(255, 255, 255, 0.1);
+        background: #ffffff;
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), 0 8px 30px rgba(16, 185, 129, 0.05);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.05);
         transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .concave-box {
-        background: rgba(255, 255, 255, 0.25);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.03), inset 0 -2px 5px rgba(255, 255, 255, 0.8);
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .concave-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
     }
     .btn-shimmer {
         position: relative; overflow: hidden;
@@ -83,13 +88,16 @@
 </style>
 @endsection
 
-@section('content')
+@section('background')
 <!-- Mesh Background -->
 <div class="mesh-bg">
     <div class="blob-1"></div>
     <div class="blob-2"></div>
     <div class="blob-3"></div>
 </div>
+@endsection
+
+@section('content')
 
 <div class="relative z-10 flex flex-col gap-10 pb-16">
     <!-- Header -->

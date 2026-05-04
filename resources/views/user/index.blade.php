@@ -11,24 +11,26 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        z-index: -1;
+        z-index: 0;
         overflow: hidden;
-        background-color: #f8fafc;
+        background-color: #f1f5f9;
+        background-image: radial-gradient(rgba(16, 185, 129, 0.2) 2px, transparent 2px);
+        background-size: 35px 35px;
         pointer-events: none;
     }
     .blob-1 {
-        position: absolute; top: -15%; left: -10%; width: 55vw; height: 55vw;
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0) 70%);
+        position: absolute; top: -10%; left: -20%; width: 55vw; height: 55vw;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0) 70%);
         filter: blur(80px); animation: float 25s infinite alternate ease-in-out;
     }
     .blob-2 {
-        position: absolute; bottom: -20%; right: -10%; width: 65vw; height: 65vw;
-        background: radial-gradient(circle, rgba(6, 95, 70, 0.12) 0%, rgba(6, 95, 70, 0) 70%);
+        position: absolute; bottom: -15%; right: 10%; width: 65vw; height: 65vw;
+        background: radial-gradient(circle, rgba(5, 150, 105, 0.25) 0%, rgba(5, 150, 105, 0) 70%);
         filter: blur(100px); animation: float 30s infinite alternate-reverse ease-in-out;
     }
     .blob-3 {
-        position: absolute; top: 30%; left: 45%; transform: translate(-50%, -50%); width: 50vw; height: 50vw;
-        background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, rgba(167, 243, 208, 0.1) 40%, rgba(167, 243, 208, 0) 70%);
+        position: absolute; top: 30%; left: 35%; transform: translate(-50%, -50%); width: 50vw; height: 50vw;
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, rgba(167, 243, 208, 0.15) 40%, rgba(167, 243, 208, 0) 70%);
         filter: blur(90px); animation: float 22s infinite alternate ease-in-out;
     }
     @keyframes float {
@@ -39,27 +41,27 @@
 
     /* Glassmorphism Classes */
     .glass-card-premium {
-        background: rgba(255, 255, 255, 0.15);
+        background: #ffffff;
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), 0 8px 30px rgba(16, 185, 129, 0.05);
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.03);
         transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .glass-card-premium:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.5);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2), 0 15px 40px rgba(16, 185, 129, 0.15);
+        background: #ffffff;
+        border-color: rgba(16, 185, 129, 0.4);
+        box-shadow: 0 12px 25px rgba(16, 185, 129, 0.15), 0 8px 10px rgba(16, 185, 129, 0.05);
         transform: translateY(-5px);
     }
     .glass-card-my-profile {
-        background: rgba(255, 255, 255, 0.3);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4), 0 10px 40px rgba(16, 185, 129, 0.15);
+        background: #ffffff;
+        border: 2px solid rgba(16, 185, 129, 0.4);
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.12), 0 4px 6px rgba(16, 185, 129, 0.05);
     }
     .glass-card-my-profile:hover {
-        border-color: rgba(16, 185, 129, 0.6);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 15px 40px rgba(16, 185, 129, 0.25);
+        border-color: rgba(16, 185, 129, 0.8);
+        box-shadow: 0 15px 30px rgba(16, 185, 129, 0.25), 0 10px 15px rgba(16, 185, 129, 0.1);
     }
 
     /* Avatar Styling */
@@ -137,13 +139,16 @@
 </style>
 @endsection
 
-@section('content')
+@section('background')
 <!-- Mesh Background -->
 <div class="mesh-bg">
     <div class="blob-1"></div>
     <div class="blob-2"></div>
     <div class="blob-3"></div>
 </div>
+@endsection
+
+@section('content')
 
 <div class="relative z-10 flex flex-col gap-10 pb-16">
     <!-- Header -->
@@ -183,9 +188,13 @@
                 <!-- Avatar -->
                 <div class="avatar-wrapper mt-4">
                     <div class="avatar-glow"></div>
-                    <div class="avatar-inner">
-                        {{ strtoupper(substr($u->nama, 0, 1)) }}
-                    </div>
+                    @if($u->logo_path)
+                        <img src="{{ asset('storage/' . $u->logo_path) }}" class="w-full h-full rounded-full object-cover border-4 border-white shadow-md relative z-10">
+                    @else
+                        <div class="avatar-inner">
+                            {{ strtoupper(substr($u->nama, 0, 1)) }}
+                        </div>
+                    @endif
                 </div>
                 
                 <!-- User Info -->

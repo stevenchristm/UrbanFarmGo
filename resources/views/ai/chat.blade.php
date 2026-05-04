@@ -39,17 +39,17 @@
 
     /* Glassmorphism Classes */
     .glass-card-premium {
-        background: rgba(255, 255, 255, 0.25);
+        background: #ffffff;
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2), 0 8px 30px rgba(16, 185, 129, 0.05);
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.03);
     }
     
     .concave-box {
-        background: rgba(255, 255, 255, 0.35);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.03), inset 0 -2px 5px rgba(255, 255, 255, 0.8);
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
     }
 
     .chat-container {
@@ -99,12 +99,11 @@
 
     .message-ai {
         align-self: flex-start;
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.8);
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
         color: #334155;
         border-radius: 24px 24px 24px 4px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
     }
     
     /* Markdown Styles inside AI Message */
@@ -176,11 +175,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(255, 255, 255, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.8);
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
         color: #64748b;
         border-radius: 50%;
         cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
@@ -224,13 +224,16 @@
 </style>
 @endsection
 
-@section('content')
+@section('background')
 <!-- Mesh Background -->
 <div class="mesh-bg">
     <div class="blob-1"></div>
     <div class="blob-2"></div>
     <div class="blob-3"></div>
 </div>
+@endsection
+
+@section('content')
 
 <div class="relative z-10 flex flex-col gap-6 pb-6 h-full">
     <!-- Header -->

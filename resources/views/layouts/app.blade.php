@@ -20,18 +20,38 @@
     @yield('styles')
 </head>
 <body class="bg-background text-foreground font-sans antialiased min-h-screen">
-
+    @yield('background')
     <div class="flex min-h-screen w-full">
         <!-- Sidebar Desktop -->
         <aside class="w-[260px] hidden md:flex flex-col border-r border-sidebar-border/60 bg-sidebar/50 backdrop-blur-xl flex-shrink-0 sticky top-0 h-screen">
             <!-- Sidebar Header -->
+            @php
+                $appLogo = \App\Models\Setting::where('key', 'app_logo')->first();
+            @endphp
             <div class="px-5 py-6 flex items-center gap-3">
-                <div class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-primary shadow-glow">
-                    <i data-lucide="sprout" class="h-6 w-6 text-primary-foreground"></i>
-                </div>
+                @if($appLogo && $appLogo->value)
+                    <img src="{{ asset('storage/' . $appLogo->value) }}" class="h-10 w-10 shrink-0 rounded-xl object-cover shadow-glow border border-primary/20">
+                @else
+                    <div class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-primary shadow-glow">
+                        <i data-lucide="sprout" class="h-6 w-6 text-primary-foreground"></i>
+                    </div>
+                @endif
                 <div class="flex flex-col leading-tight">
                     <span class="font-display text-lg font-bold tracking-tight text-foreground">UrbanFarm</span>
                     <span class="text-xs text-muted-foreground">Smart Cultivation</span>
+                </div>
+            </div>
+
+            <div class="px-5 pb-4 mb-2 border-b border-sidebar-border/60 flex items-center gap-3">
+                @if(Auth::user()->logo_path)
+                    <img src="{{ asset('storage/' . Auth::user()->logo_path) }}" class="h-10 w-10 shrink-0 rounded-full object-cover border-2 border-primary/20">
+                @else
+                    <div class="h-10 w-10 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg border-2 border-primary/20">
+                        {{ strtoupper(substr(Auth::user()->nama, 0, 1)) }}
+                    </div>
+                @endif
+                <div class="flex flex-col leading-tight">
+                    <span class="font-bold text-sm text-foreground uppercase tracking-wider">{{ Auth::user()->nama }}</span>
                 </div>
             </div>
 
@@ -97,13 +117,18 @@
             <!-- Topbar (Mobile Header) -->
             <header class="flex md:hidden h-16 items-center border-b border-sidebar-border/60 bg-glass/80 backdrop-blur-xl px-4 sticky top-0 z-10">
                 <div class="flex items-center gap-2 font-display font-semibold text-primary">
-                    <i data-lucide="sprout" class="h-5 w-5"></i> UrbanFarm
+                    @if($appLogo && $appLogo->value)
+                        <img src="{{ asset('storage/' . $appLogo->value) }}" class="h-6 w-6 rounded-md object-cover">
+                    @else
+                        <i data-lucide="sprout" class="h-5 w-5"></i> 
+                    @endif
+                    UrbanFarm
                 </div>
             </header>
 
             <!-- Main Scrollable Area -->
-            <div class="flex flex-1 p-4 md:p-8 overflow-y-auto">
-                <main class="w-full max-w-6xl mx-auto space-y-6 animate-slide-up">
+            <div class="flex-1 w-full p-6 md:p-10 lg:p-14 overflow-y-auto overflow-x-hidden">
+                <main class="w-full max-w-7xl mx-auto space-y-8 animate-slide-up">
                     @yield('content')
                 </main>
             </div>

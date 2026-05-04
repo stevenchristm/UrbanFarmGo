@@ -59,7 +59,7 @@
 
     /* Glassmorphism Card Core */
     .glass-card-premium {
-        background: rgba(255, 255, 255, 0.1);
+        background: #ffffff;
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
         border: 1px solid rgba(255, 255, 255, 0.2);
@@ -68,7 +68,7 @@
     }
 
     .glass-card-premium:hover {
-        background: rgba(255, 255, 255, 0.18);
+        background: #ffffff;
         border-color: rgba(255, 255, 255, 0.4);
         box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2), 0 15px 40px rgba(16, 185, 129, 0.15);
     }
@@ -114,13 +114,16 @@
 </style>
 @endsection
 
-@section('content')
+@section('background')
 <!-- Mesh Background -->
 <div class="mesh-bg">
     <div class="blob-1"></div>
     <div class="blob-2"></div>
     <div class="blob-3"></div>
 </div>
+@endsection
+
+@section('content')
 
 <!-- Floating Action Button (FAB) -->
 <a href="{{ route('lahan.create') }}" class="fixed bottom-8 right-8 z-50 flex items-center justify-center gap-3 px-5 md:px-6 py-4 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-extrabold rounded-full shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group border border-emerald-300/50">
