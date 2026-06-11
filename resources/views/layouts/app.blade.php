@@ -98,7 +98,7 @@
                         Pro Tips
                     </div>
                     <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                        {{ \App\Models\Setting::where('key','sidebar_protips')->value('value') ?? 'Tanyakan AI Agronomist untuk jadwal pemupukan yang paling optimal.' }}
+                        Tanyakan AI Agronomist untuk jadwal pemupukan yang paling optimal.
                     </p>
                 </div>
 
@@ -109,10 +109,6 @@
                         <span>Keluar Sesi</span>
                     </button>
                 </form>
-                <a href="{{ route('admin.login') }}" class="flex w-full items-center gap-3 rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground/50 hover:text-muted-foreground hover:bg-sidebar-accent/50 transition-all mt-1" style="opacity:0.5;font-weight:400;">
-                    <i data-lucide="shield" class="h-4 w-4"></i>
-                    <span>Admin</span>
-                </a>
             </div>
         </aside>
 
@@ -149,18 +145,13 @@
     @auth
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            function initGlobalEcho() {
-                if (window.Echo) {
-                    const userId = {{ Auth::id() }};
-                    window.Echo.private('App.Models.User.' + userId)
-                        .listen('TaskNotification', (e) => {
-                            showGlobalToast(e.title, e.message, e.actionUrl);
-                        });
-                } else {
-                    setTimeout(initGlobalEcho, 100);
-                }
+            if (window.Echo) {
+                const userId = {{ Auth::id() }};
+                window.Echo.private('App.Models.User.' + userId)
+                    .listen('TaskNotification', (e) => {
+                        showGlobalToast(e.title, e.message, e.actionUrl);
+                    });
             }
-            initGlobalEcho();
 
             function showGlobalToast(title, message, url) {
                 const toastId = 'toast-' + Math.random().toString(36).substr(2, 9);

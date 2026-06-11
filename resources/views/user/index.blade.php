@@ -285,9 +285,9 @@
             <div class="p-3 bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-white/50">
                 <i data-lucide="users" class="w-8 h-8 md:w-10 md:h-10 text-emerald-600"></i>
             </div>
-            {{ \App\Models\Setting::where('key','komunitas_title')->value('value') ?? 'Komunitas Petani Digital' }}
+            Komunitas Petani Digital
         </h1>
-        <p class="text-slate-500 font-medium text-lg max-w-2xl">{{ \App\Models\Setting::where('key','komunitas_subtitle')->value('value') ?? 'Terhubung, belajar, dan berkolaborasi dengan jaringan agronomis modern yang menggunakan ekosistem UrbanFarm.' }}</p>
+        <p class="text-slate-500 font-medium text-lg max-w-2xl">Terhubung, belajar, dan berkolaborasi dengan jaringan agronomis modern yang menggunakan ekosistem UrbanFarm.</p>
     </div>
 
     <!-- Alert Notification -->
@@ -512,27 +512,22 @@
         });
 
         // Laravel Echo listening
-        function initChatEcho() {
-            if (window.Echo) {
-                window.Echo.channel('community-chat')
-                    .listen('MessageSent', (e) => {
-                        // Ignore if it's our own message because we already appended it optimistically
-                        if (e.message.user_id !== userId) {
-                            appendMessage(e.message);
-                            if (!chatbox.hasClass('closed')) {
-                                scrollToBottom();
-                            } else {
-                                // Optional: add a notification badge on the toggle button
-                                chatToggleBtn.addClass('animate-bounce');
-                                setTimeout(() => chatToggleBtn.removeClass('animate-bounce'), 3000);
-                            }
+        if (window.Echo) {
+            window.Echo.channel('community-chat')
+                .listen('MessageSent', (e) => {
+                    // Ignore if it's our own message because we already appended it optimistically
+                    if (e.message.user_id !== userId) {
+                        appendMessage(e.message);
+                        if (!chatbox.hasClass('closed')) {
+                            scrollToBottom();
+                        } else {
+                            // Optional: add a notification badge on the toggle button
+                            chatToggleBtn.addClass('animate-bounce');
+                            setTimeout(() => chatToggleBtn.removeClass('animate-bounce'), 3000);
                         }
-                    });
-            } else {
-                setTimeout(initChatEcho, 100);
-            }
+                    }
+                });
         }
-        initChatEcho();
     });
 </script>
 @endsection
